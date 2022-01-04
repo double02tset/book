@@ -1,0 +1,39 @@
+POST http://localhost:3001/create HTTP/1.1
+content-type: application/json
+
+{
+    "select":"product",
+    "productName":"bat",
+    "qtyPerUnit":10,
+    "unitPrice":1000,
+    "unitInStock":5,
+    "discontinued":false,
+    "categoryId":"61d43fc791775b2ccf268c0f"
+}
+
+###
+GET http://localhost:3001/readall HTTP/1.1
+content-type: application/json
+
+###
+GET http://localhost:3001/read/61d4332cd27c9e34eab6af9b HTTP/1.1
+content-type: application/json
+
+###
+PUT http://localhost:3001/update/1 HTTP/1.1
+content-type: application/json
+
+{"categoryId":"61d3fd1a65730319be930e1c"}
+
+###
+DELETE http://localhost:3001/delete/1 HTTP/1.1
+content-type: application/json
+
+###
+POST http://localhost:3001/create HTTP/1.1
+content-type: application/json
+
+{
+    "select":"category",
+    "categoryName":"sports"
+}

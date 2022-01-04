@@ -1,0 +1,18 @@
+POST /create
+{
+    select://string//"product" or "category"
+    productName://String,
+    qtyPerUnit://Number,
+    unitPrice://Number,
+    unitInStock://Number,
+    discontinued://Boolen,
+    categoryId://string
+}
+
+GET /realall
+
+GET /read/{:_id}
+
+PUT /update/{:_id}
+
+DELETE /delete/{:_id}
