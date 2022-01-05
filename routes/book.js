@@ -6,6 +6,7 @@ const mysqlConnection = require("../connection")
 
 let book_image;
 
+//defining distination and file to store image
 const storage = multer.diskStorage({
     destination:(req, file, cb)=>{
         cb(null, 'images')
@@ -15,17 +16,19 @@ const storage = multer.diskStorage({
         cb(null,book_image)
     }
 })
+
 const upload = multer({storage: storage})
 
+//get request to fetch all books
 Router.get("/",(req,res)=>{
-    mysqlConnection.query("SELECT * FROM books",(err,result)=>{
+    mysqlConnection.query("SELECT book_title FROM books",(err,result)=>{
         if(!err){
             res.send(result)
         }
     })
 })
 Router.get("/:id",(req,res)=>{
-    mysqlConnection.query("SELECT * FROM books WHERE book_id =?",[req.params.id],(err,result)=>{
+    mysqlConnection.query("SELECT book_title FROM books WHERE book_id =?",[req.params.id],(err,result)=>{
         if(!err){
             res.send(result)
         }
