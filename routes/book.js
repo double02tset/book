@@ -27,6 +27,8 @@ Router.get("/",(req,res)=>{
         }
     })
 })
+
+//get request to fetch specific book by providing id
 Router.get("/:id",(req,res)=>{
     mysqlConnection.query("SELECT book_title FROM books WHERE book_id =?",[req.params.id],(err,result)=>{
         if(!err){
@@ -35,6 +37,7 @@ Router.get("/:id",(req,res)=>{
     })
 })
 
+//post request to store book in DB
 Router.post("/",upload.single('image'),(req,res)=>{
     if(req.body.book_id && req.body.book_title && book_image){
         let sqlq ="INSERT INTO books (book_id, book_title, book_image) VALUES ?";
@@ -46,6 +49,8 @@ Router.post("/",upload.single('image'),(req,res)=>{
         })
     }else(res.send("please provid necessary information"))
 })
+
+//put request to update book title by taking book id //not good method to update image
 Router.put("/",(req,res)=>{
     if(req.body.book_id && req.body.book_title){
         let new_book_title = req.body.book_title;
@@ -59,6 +64,7 @@ Router.put("/",(req,res)=>{
     
 })
 
+//delete request to delete book by taking id
 Router.delete("/:id",(req,res)=>{
     mysqlConnection.query("DELETE FROM books WHERE book_id =?",[req.params.id],(err,result)=>{
         if(!err){
@@ -66,5 +72,5 @@ Router.delete("/:id",(req,res)=>{
         }
     })
 })
-
+//exporting route
 module.exports = Router;
